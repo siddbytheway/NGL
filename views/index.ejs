@@ -8,15 +8,44 @@
         body{
             text-align: center;
         }
+        #newbox
+        {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <h1>To - Do List app in Nodejs</h1>
     <br>
-    <br>
     <form action="/add" method="post">
         <input type="text" name="task" placeholder="enter task " required/>
         <button type="submit">add</button>
     </form>
+    <br>
+
+    <% for(let i = 0; i < tasks.length; i++){ %>
+      <div style="min-height: 50px;" >
+        <li style="display: inline-block;"  > <%= tasks[i] %> </li>
+
+        <form style="display: inline-block" method="post" action="/delete"><button type="submit">x</button><input type="hidden" name="index" value=" <%= i %> "></form>
+        <button onclick="showbox()" >edit</button>
+
+        <form action="/edit" method="post" id="newbox" name="new">
+            <input type="text" name="new" >
+            <button type="submit" >update</button>
+        </form>
+      </div>
+    <% } %>
+
+    <br>
+
+
+
+    <script>
+        function showbox(i){
+            document.getElementById("newbox-" + str(i)).style.display = "inline-block";
+        }
+    </script>
+
 </body>
 </html>
